@@ -91,10 +91,10 @@ def import_from_file(f):
 
 def export_to_file(f):
     if dictionary == {}:
-        out_('The dictionary is empty. Fill it in via "add" command.')
+        out_('The dictionary is empty. Fill it in via "add" command or '
+             'import from file using "import".')
     else:
         count = 0
-        out_('File:')
         with open(f, 'w') as file:
             for term, definition in dictionary.items():
                 if term not in mistakes.keys():
@@ -113,7 +113,8 @@ def get_term(val, d):
 def ask_card():
     count_mistake = 0
     if dictionary == {}:
-        out_('The dictionary is empty. Fill it in via "add" command.')
+        out_('The dictionary is empty. Fill it in via "add" command or '
+             'import from file using "import".')
     else:
         out_('How many times to ask?')
         times = int(in_())
@@ -168,12 +169,12 @@ def reset_stats():
 
 
 def import_file():
-    filename = str(input('File:'))
+    filename = str(input('File:\n'))
     import_from_file(filename)
 
 
 def export_file():
-    filename = str(input('File:'))
+    filename = str(input('File:\n'))
     export_to_file(filename)
 
 
