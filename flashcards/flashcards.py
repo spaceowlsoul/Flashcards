@@ -1,3 +1,4 @@
+import argparse
 import random
 from io import StringIO
 import logging
@@ -6,6 +7,14 @@ dictionary = {}
 mistakes = {}
 
 output = StringIO()
+
+parser = argparse.ArgumentParser(description='This is a Flashcards application!:)')
+parser.add_argument('-i', '--import_from',
+                    help='Please, enter the name of the txt file from where the flashcards will be imported')
+parser.add_argument('-e', '--export_to',
+                    help='Please, enter the name of the txt file where the flashcards will be saved')
+args = parser.parse_args()
+
 
 logger = logging.getLogger()
 
@@ -64,9 +73,9 @@ def remove_card():
         out_(f'Can\'t remove "{card}": there is no such card.')
 
 
-def import_from_file():
+def import_from_file(f):
     try:
-        file = open(str(input('File:\n')))
+        file = open(f)
     except FileNotFoundError:
         out_('File not found.')
     else:
@@ -80,13 +89,13 @@ def import_from_file():
         file.close()
 
 
-def export_file():
+def export_to_file(f):
     if dictionary == {}:
         out_('The dictionary is empty. Fill it in via "add" command.')
     else:
         count = 0
         out_('File:')
-        with open(str(in_()), 'w') as file:
+        with open(f, 'w') as file:
             for term, definition in dictionary.items():
                 if term not in mistakes.keys():
                     mistakes[term] = 0
@@ -158,25 +167,43 @@ def reset_stats():
     print('Card statistics have been reset.')
 
 
+def import_file():
+    filename = str(input('File:'))
+    import_from_file(filename)
+
+
+def export_file():
+    filename = str(input('File:'))
+    export_to_file(filename)
+
+
 def main():
+    if args.import_from:
+        import_from_file(args.import_from)
+
     actions = {'add': add_card,
                'remove': remove_card,
-               'import': import_from_file,
+               'import': import_file,
                'export': export_file,
                'ask': ask_card,
                'log': log,
                'hardest card': hardest_card,
                'reset stats': reset_stats}
-    while True:
+    action = ''
+    while action != 'exit':
         out_('Input the action (add, remove, import, export, ask,'
              ' exit, log, hardest card, reset stats):')
         action = in_()
-        if action == 'exit':
-            out_('Bye bye!')
-            break
-        elif action in actions:
+        if action in actions:
             actions[action]()
-        out_('')
+
+    else:
+        if args.export_to:
+            export_to_file(args.export_to)
+
+        else:
+            out_('Bye bye!')
+        out_(' ')
 
 
 if __name__ == '__main__':
