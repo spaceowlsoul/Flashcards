@@ -43,7 +43,7 @@ When exporting, the strings will be saved in exactly the same format (with mista
    - remove --> select the card you would like to delete from your dictionary;
    - import --> write the path to the file with the words you intend to use for training during the session;
    - export --> provide the filepath where you would like to save the updated dictionary;
-   - ask --> opt for how many times you would like to be asked, and the program will ask you the terms, picked on the random base exactly as many times
+   - ask --> opt for how many times you would like to be asked, and the program will ask you the terms, picked on the random base exactly as many times;
    - hardest cards --> choose this option, and the program will display the terms in the answer to which you made the most mistakes;
    - reset stats --> clear the statictics of mistakes made;
    - log --> come up with a filename and extension or choose the path to the existed file. All the history of the session will be saved in this file;
