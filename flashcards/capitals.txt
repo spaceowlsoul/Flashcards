@@ -1,0 +1,4 @@
+Ukraine:Kiev:0
+Belarus:Minsk:0
+UK:London
+USA:Washington
