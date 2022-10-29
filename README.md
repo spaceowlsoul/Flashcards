@@ -8,7 +8,7 @@ Flashcards can be used to remember any sort of data, and this program can be a u
 
 ## How exactly does it work?
 
-1.Download the 'flashcards' folder and copy the path to the flashcards.py.
+1.Download the 'flashcards' folder and copy the path to the 'flashcards.py' file.
 
 2.Run the command prompt, paste the copied path and start executing the python file as follows:
 
